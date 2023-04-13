@@ -19,6 +19,21 @@ pub struct EnumVariant {
 }
 
 #[derive(Debug, Clone, serde::Deserialize)]
+pub struct StructureMember {
+    pub name: String,
+    #[serde(rename = "type")]
+    pub kind: String,
+    pub description: String,
+}
+
+#[derive(Debug, Clone, serde::Deserialize)]
+pub struct Structure {
+    pub name: String,
+    pub description: String,
+    pub fields: Vec<StructureMember>,
+}
+
+#[derive(Debug, Clone, serde::Deserialize)]
 pub struct Enum {
     pub name: String,
     pub description: String,
@@ -29,6 +44,7 @@ pub struct Enum {
 pub struct RayLibApiDefinition {
     pub defines: Vec<Definition>,
     pub enums: Vec<Enum>,
+    pub structs: Vec<Structure>,
 }
 
 impl RayLibApiDefinition {
